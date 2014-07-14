@@ -305,7 +305,7 @@ Attributes
   <tr>
     <td><tt>['beef']['config']['extension']['dns']['enable']</tt></td>
     <td>Boolean</td>
-    <td><tt>false,</tt></td>
+    <td><tt>false</tt></td>
   </tr>
 </table>
 
