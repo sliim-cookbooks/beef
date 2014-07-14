@@ -16,7 +16,6 @@ The following platforms and versions are tested and supported using Opscode's te
 Attributes
 ----------
 #### beef::default
-##### General
 <table>
   <tr>
     <th>Key</th>
@@ -56,7 +55,7 @@ Attributes
   </tr>
 </table>
 
-##### BeEF configuration
+#### beef::config
 <table>
   <tr>
     <th>Key</th>
