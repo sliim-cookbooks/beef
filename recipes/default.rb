@@ -58,10 +58,16 @@ end
 
 git node['beef']['path'] do
   repository 'https://github.com/beefproject/beef.git'
-  reference 'master'
+  reference node['beef']['version']
   action :sync
   user node['beef']['user']
   group node['beef']['user']
+end
+
+template node['beef']['path'] + '/config.yaml' do
+  source 'config.yaml.erb'
+  mode 0644
+  variables 'config' => node['beef']['config']
 end
 
 rbenv_execute 'bundle install' do
