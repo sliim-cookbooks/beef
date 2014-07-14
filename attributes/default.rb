@@ -32,7 +32,8 @@ default['beef']['version'] = 'master'
 default['beef']['config']['debug'] = false
 default['beef']['config']['client_debug'] = false
 default['beef']['config']['crypto_default_value_length'] = 80
-default['beef']['config']['restrictions']['permitted_hooking_subnet'] = '0.0.0.0/0'
+default['beef']['config']['restrictions']['permitted_hooking_subnet'] =
+  '0.0.0.0/0'
 default['beef']['config']['restrictions']['permitted_ui_subnet'] = '0.0.0.0/0'
 default['beef']['config']['http']['debug'] = false
 default['beef']['config']['http']['host'] = '0.0.0.0'
@@ -45,11 +46,12 @@ default['beef']['config']['http']['hook_file'] = '/hook.js'
 default['beef']['config']['http']['hook_session_name'] = 'BEEFHOOK'
 default['beef']['config']['http']['session_cookie_name'] = 'BEEFSESSION'
 default['beef']['config']['http']['restful_api']['allow_cors'] = false
-default['beef']['config']['http']['restful_api']['cors_allowed_domains'] = 'http://browserhacker.com'
+default['beef']['config']['http']['restful_api']['cors_allowed_domains'] =
+  'http://browserhacker.com'
 default['beef']['config']['http']['websocket']['enable'] = false
-default['beef']['config']['http']['websocket']['port'] = 61985
+default['beef']['config']['http']['websocket']['port'] = 61_985
 default['beef']['config']['http']['websocket']['secure'] = true
-default['beef']['config']['http']['websocket']['secure_port'] = 61986
+default['beef']['config']['http']['websocket']['secure_port'] = 61_986
 default['beef']['config']['http']['websocket']['ws_poll_timeout'] = 1000
 default['beef']['config']['http']['web_server_imitation']['enable'] = true
 default['beef']['config']['http']['web_server_imitation']['type'] = 'apache'
