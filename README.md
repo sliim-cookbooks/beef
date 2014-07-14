@@ -282,7 +282,7 @@ Attributes
   <tr>
     <td><tt>['beef']['config']['extension']['metasploit']['enable']</tt></td>
     <td>Boolean</td>
-    <td><tt>dalse</tt></td>
+    <td><tt>false</tt></td>
   </tr>
   <tr>
     <td><tt>['beef']['config']['extension']['social_engineering']['enable']</tt></td>
