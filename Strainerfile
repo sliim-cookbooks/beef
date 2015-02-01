@@ -1,4 +1,0 @@
-knife: bundle exec knife cookbook test $COOKBOOK
-rubocop: bundle exec rubocop $SANDBOX/$COOKBOOK
-foodcritic: bundle exec foodcritic $SANDBOX/$COOKBOOK
-kitchen: bundle exec kitchen test

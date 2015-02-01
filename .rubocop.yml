@@ -1,7 +1,7 @@
 AllCops:
   Include:
-    - metadata.rb
     - '**/Gemfile'
+    - metadata.rb
     - attributes/**/*
     - definitions/**/*
     - libraries/**/*
@@ -10,6 +10,9 @@ AllCops:
     - resources/**/*
     - spec/**/*
     - test/**/*
+  Exclude:
+    - cookbooks/**/*
+    - vendor/**/*
 
-SingleSpaceBeforeFirstArg:
+Metrics/AbcSize:
   Enabled: false

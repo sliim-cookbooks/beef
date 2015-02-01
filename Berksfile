@@ -1,7 +1,4 @@
-# -*- ruby -*-
-site :opscode
-
+# -*- coding: utf-8 -*-
+source 'https://supermarket.getchef.com'
 metadata
-
-cookbook 'apt'
 cookbook 'rbenv', git: 'https://github.com/RiotGames/rbenv-cookbook.git'

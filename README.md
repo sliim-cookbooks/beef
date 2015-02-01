@@ -6,7 +6,6 @@ Install and configures beefproject - http://beefproject.com.
 Requirements
 ------------
 #### Cookbooks
-- `apt` - `http://community.opscode.com/cookbooks/apt`
 - `rbenv` - `https://github.com/RiotGames/rbenv-cookbook.git`
 
 #### Platforms
@@ -323,19 +322,16 @@ Just include `beef` in your node's `run_list`:
 }
 ```
 
-#### Tests
-This cookbook use Strainer to define tests suites.
+#### Running tests
 
 - First, install dependencies:  
-`bundle install`  
+`bundle install`
 
-- To run all tests:  
-`bundle exec strainer test`
+- Run Checkstyle and ChefSpec:  
+`bundle exec rake`
 
-- To run integration tests:
-`bundle exec kitchen test`
-
-See `Strainerfile` for all tests suites.
+- Run Kitchen tests:  
+`bundle exec rake kitchen`  
 
 Contributing
 ------------

@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 #
 # Cookbook Name:: beef
 # Recipe:: default
@@ -16,7 +16,10 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+require 'serverspec'
+
+include SpecInfra::Helper::Exec
+include SpecInfra::Helper::DetectOS
 
 describe file '/home/beef/beefproject' do
   it { should be_directory }
