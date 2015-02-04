@@ -17,64 +17,44 @@
 #
 
 node['beef']['packages'].each do |pkg|
-  package pkg do
-    action :install
-  end
+  package pkg
 end
+
+gem_package 'bundler'
 
 user node['beef']['user'] do
-  action :create
-  system false
-  home node['beef']['user_home']
+  system true
+  supports manage_home: false
+  home node['beef']['path']
+  not_if { node['beef']['user'] == 'root' }
 end
 
-node.default['rbenv']['user'] = node['beef']['user']
-node.default['rbenv']['group'] = node['beef']['user']
-node.default['rbenv']['user_home'] = node['beef']['user_home']
-node.default['rbenv']['root_path'] = "#{node['beef']['user_home']}/.rbenv"
-
-include_recipe 'rbenv'
-include_recipe 'rbenv::ruby_build'
-
-rbenv_ruby node['beef']['ruby_version'] do
-  global true
-end
-
-rbenv_gem 'install-bundler-ruby' do
-  package_name 'bundler'
-  ruby_version node['beef']['ruby_version']
-end
-
-# FIXME: Bad owner..
-fix_owner_cmd = 'chown -R '
-fix_owner_cmd << node['beef']['user'] << ':'
-fix_owner_cmd << node['beef']['user'] << ' '
-fix_owner_cmd << node['beef']['user_home']
-execute 'fix-home-owner' do
-  command fix_owner_cmd
+execute 'chown-beef-dir' do
+  action :nothing
+  command 'chown -R '\
+          "#{node['beef']['user']}:#{node['beef']['user']}"\
+          " #{node['beef']['path']}"
 end
 
 git node['beef']['path'] do
-  repository 'https://github.com/beefproject/beef.git'
-  reference node['beef']['version']
-  action :sync
-  user node['beef']['user']
-  group node['beef']['user']
+  repository node['beef']['git_repository']
+  reference node['beef']['git_reference']
+  notifies :run, 'execute[chown-beef-dir]', :immediately
 end
 
 template node['beef']['path'] + '/config.yaml' do
-  source 'config.yaml.erb'
-  mode 0644
-  variables 'config' => node['beef']['config']
-end
-
-rbenv_execute 'bundle install' do
-  cwd node['beef']['path']
-  user node['beef']['user']
+  owner node['beef']['user']
   group node['beef']['user']
+  source 'config.yaml.erb'
+  variables config: node['beef']['config']
 end
 
-rbenv_execute 'nohup ruby beef >> beef.log 2>> beef.err &' do
+execute 'bundle install' do
+  cwd node['beef']['path']
+  user 'root'
+end
+
+execute 'nohup ruby beef >> beef.log 2>> beef.err &' do
   cwd node['beef']['path']
   user node['beef']['user']
   group node['beef']['user']

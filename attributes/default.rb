@@ -19,12 +19,11 @@
 case node['platform']
 when 'debian'
   default['beef']['packages'] = %w(curl git ruby build-essential
-                                   libsqlite3-ruby libsqlite3-dev
-                                   libssl-dev)
+                                   ruby-dev libsqlite3-ruby
+                                   libsqlite3-dev libssl-dev)
 end
 
-default['beef']['ruby_version'] = '1.9.3-p547'
-default['beef']['user'] = 'beef'
-default['beef']['user_home'] = '/home/beef'
-default['beef']['path'] = '/home/beef/beefproject'
-default['beef']['version'] = 'master'
+default['beef']['user'] = 'root'
+default['beef']['path'] = '/opt/beef'
+default['beef']['git_repository'] = 'https://github.com/beefproject/beef.git'
+default['beef']['git_reference'] = 'master'

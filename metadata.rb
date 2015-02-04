@@ -23,6 +23,4 @@ version '0.1.1'
 
 recipe 'default', 'Installs/configures beef'
 
-depends 'rbenv'
-
 supports 'debian'

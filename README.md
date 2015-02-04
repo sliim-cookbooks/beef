@@ -5,9 +5,6 @@ Install and configures beefproject - http://beefproject.com.
 
 Requirements
 ------------
-#### Cookbooks
-- `rbenv` - `https://github.com/RiotGames/rbenv-cookbook.git`
-
 #### Platforms
 The following platforms and versions are tested and supported using Opscode's test-kitchen.
 - Debian wheezy
@@ -23,33 +20,33 @@ Attributes
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['beef']['ruby_version']</tt></td>
-    <td>String</td>
-    <td>Rbenv ruby version to use</td>
-    <td><tt>1.9.3-p547</tt></td>
+    <td><tt>['beef']['packages']</tt></td>
+    <td>Array</td>
+    <td>List of packages to install</td>
+    <td><tt>Depends of the platform</tt></td>
   </tr>
   <tr>
     <td><tt>['beef']['user']</tt></td>
     <td>String</td>
     <td>User to use for beefproject</td>
-    <td><tt>beef</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['beef']['user_home']</tt></td>
-    <td>String</td>
-    <td>User's home directory</td>
-    <td><tt>/home/beef</tt></td>
+    <td><tt>root</tt></td>
   </tr>
   <tr>
     <td><tt>['beef']['path']</tt></td>
     <td>String</td>
-    <td>Path where will be checkout beef repository</td>
-    <td><tt>/home/beef/beefproject</tt></td>
+    <td>Path where will be checkout beef repository.</td>
+    <td><tt>/opt/beef</tt></td>
   </tr>
   <tr>
-    <td><tt>['beef']['version']</tt></td>
+    <td><tt>['beef']['git_repository']</tt></td>
     <td>String</td>
-    <td>Beef version to checkout</td>
+    <td>Git repository for beefproject</td>
+    <td><tt>https://github.com/beefproject/beef.git</tt></td>
+  </tr>  
+  <tr>
+    <td><tt>['beef']['git_reference']</tt></td>
+    <td>String</td>
+    <td>Git branch or tag</td>
     <td><tt>master</tt></td>
   </tr>
 </table>
