@@ -12,7 +12,7 @@ describe 'beef::default' do
   context 'with custom user' do
     let(:subject) do
       ChefSpec::SoloRunner.new do |node|
-        node.set['beef']['packages'] = ['git', 'ruby']
+        node.set['beef']['packages'] = %w(git ruby)
         node.set['beef']['user'] = 'beefuser'
         node.set['beef']['path'] = '/opt/beef-home'
         node.set['beef']['git_repository'] = 'http://git.server.org/beef.git'
@@ -47,7 +47,8 @@ describe 'beef::default' do
     end
 
     it 'does create config file' do
-      expect(subject).to create_template('/opt/beef-home/config.yaml')                                 .with(owner: 'beefuser',
+      expect(subject).to create_template('/opt/beef-home/config.yaml')
+        .with(owner: 'beefuser',
               group: 'beefuser',
               source: 'config.yaml.erb')
 
@@ -61,7 +62,8 @@ describe 'beef::default' do
     end
 
     it 'does run beef process' do
-      expect(subject).to run_execute('nohup ruby beef >> beef.log 2>> beef.err &')
+      expect(subject).to run_execute(
+        'nohup ruby beef >> beef.log 2>> beef.err &')
         .with(cwd: '/opt/beef-home',
               user: 'beefuser',
               group: 'beefuser')
