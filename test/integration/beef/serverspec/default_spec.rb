@@ -2,7 +2,6 @@
 
 require 'serverspec'
 set :backend, :exec
-set :path, '/opt/ndenv/shims/:/opt/ndenv/versions/v0.10.26/bin:$PATH'
 
 describe user 'beef' do
   it { should exist }
