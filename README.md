@@ -1,7 +1,7 @@
 beef Cookbook
 =============
 Install and configures beefproject - http://beefproject.com.
-[![Cookbook Version](https://img.shields.io/cookbook/v/beef.svg)](https://community.opscode.com/cookbooks/beef) [![Build Status](https://secure.travis-ci.org/wargames-cookbooks/beef.png)](http://travis-ci.org/wargames-cookbooks/beef)
+[![Cookbook Version](https://img.shields.io/cookbook/v/beef.svg)](https://community.opscode.com/cookbooks/beef) [![Build Status](https://secure.travis-ci.org/sliim-cookbooks/beef.png)](http://travis-ci.org/sliim-cookbooks/beef)
 
 Requirements
 ------------
