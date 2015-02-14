@@ -54,7 +54,7 @@ execute 'bundle install' do
   user 'root'
 end
 
-execute 'nohup ruby beef >> beef.log 2>> beef.err &' do
+execute 'nohup ruby1.9.3 beef >> beef.log 2>> beef.err &' do
   cwd node['beef']['path']
   user node['beef']['user']
   group node['beef']['user']

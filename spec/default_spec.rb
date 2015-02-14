@@ -65,7 +65,7 @@ describe 'beef::default' do
 
     it 'should run beef process' do
       expect(subject).to run_execute(
-        'nohup ruby beef >> beef.log 2>> beef.err &')
+        'nohup ruby1.9.3 beef >> beef.log 2>> beef.err &')
         .with(cwd: '/opt/beef-home',
               user: 'beefuser',
               group: 'beefuser')

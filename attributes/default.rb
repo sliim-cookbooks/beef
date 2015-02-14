@@ -16,13 +16,9 @@
 # limitations under the License.
 #
 
-case node['platform']
-when 'debian'
-  default['beef']['packages'] = %w(curl git ruby build-essential
-                                   ruby-dev libsqlite3-ruby
-                                   libsqlite3-dev libssl-dev)
-end
-
+default['beef']['packages'] = %w(curl git ruby1.9.3 build-essential
+                                 ruby-dev libsqlite3-ruby ruby
+                                 libsqlite3-dev libssl-dev)
 default['beef']['user'] = 'root'
 default['beef']['path'] = '/opt/beef'
 default['beef']['git_repository'] = 'https://github.com/beefproject/beef.git'
