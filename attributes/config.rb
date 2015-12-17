@@ -16,54 +16,89 @@
 # limitations under the License.
 #
 
-default['beef']['config']['debug'] = false
-default['beef']['config']['client_debug'] = false
-default['beef']['config']['crypto_default_value_length'] = 80
-default['beef']['config']['restrictions']['permitted_hooking_subnet'] =
-  '0.0.0.0/0'
-default['beef']['config']['restrictions']['permitted_ui_subnet'] = '0.0.0.0/0'
-default['beef']['config']['http']['debug'] = false
-default['beef']['config']['http']['host'] = '0.0.0.0'
-default['beef']['config']['http']['port'] = 3000
-default['beef']['config']['http']['xhr_poll_timeout'] = 5000
-default['beef']['config']['http']['dns_host'] = 'localhost'
-default['beef']['config']['http']['dns_port'] = 53
-default['beef']['config']['http']['web_ui_basepath'] = '/ui'
-default['beef']['config']['http']['hook_file'] = '/hook.js'
-default['beef']['config']['http']['hook_session_name'] = 'BEEFHOOK'
-default['beef']['config']['http']['session_cookie_name'] = 'BEEFSESSION'
-default['beef']['config']['http']['restful_api']['allow_cors'] = false
-default['beef']['config']['http']['restful_api']['cors_allowed_domains'] =
-  'http://browserhacker.com'
-default['beef']['config']['http']['websocket']['enable'] = false
-default['beef']['config']['http']['websocket']['port'] = 61_985
-default['beef']['config']['http']['websocket']['secure'] = true
-default['beef']['config']['http']['websocket']['secure_port'] = 61_986
-default['beef']['config']['http']['websocket']['ws_poll_timeout'] = 1000
-default['beef']['config']['http']['web_server_imitation']['enable'] = true
-default['beef']['config']['http']['web_server_imitation']['type'] = 'apache'
-default['beef']['config']['http']['https']['enable'] = false
-default['beef']['config']['http']['https']['key'] = 'beef_key.pem'
-default['beef']['config']['http']['https']['cert'] = 'beef_cert.pem'
-default['beef']['config']['database']['driver'] = 'sqlite'
-default['beef']['config']['database']['db_file'] = 'beef.db'
-default['beef']['config']['database']['db_host'] = 'localhost'
-default['beef']['config']['database']['db_port'] = 5432
-default['beef']['config']['database']['db_name'] = 'beef'
-default['beef']['config']['database']['db_user'] = 'beef'
-default['beef']['config']['database']['db_passwd'] = 'beef123'
-default['beef']['config']['database']['db_encoding'] = 'UTF-8'
-default['beef']['config']['credentials']['user'] = 'beef'
-default['beef']['config']['credentials']['passwd'] = 'beef'
-default['beef']['config']['autorun']['enable'] = true
-default['beef']['config']['autorun']['allow_user_notify'] = true
-default['beef']['config']['geoip']['enable'] = false
-default['beef']['config']['geoip']['database'] = '/opt/GeoIP/GeoLiteCity.dat'
-default['beef']['config']['extension']['requester']['enable'] = true
-default['beef']['config']['extension']['proxy']['enable'] = true
-default['beef']['config']['extension']['metasploit']['enable'] = false
-default['beef']['config']['extension']['social_engineering']['enable'] = true
-default['beef']['config']['extension']['evasion']['enable'] = false
-default['beef']['config']['extension']['console']['shell']['enable'] = false
-default['beef']['config']['extension']['ipec']['enable'] = true
-default['beef']['config']['extension']['dns']['enable'] = false
+default['beef']['config']['beef'] = {
+  version: '0.4.6.1-alpha',
+  debug: false,
+  client_debug: false,
+  crypto_default_value_length: 80,
+  restrictions: {
+    permitted_hooking_subnet: '0.0.0.0/0',
+    permitted_ui_subnet: '0.0.0.0/0'
+  },
+  http: {
+    debug: false,
+    host: '0.0.0.0',
+    port: 3000,
+    xhr_poll_timeout: 1000,
+    dns_host: 'localhost',
+    dns_port: 53,
+    web_ui_basepath: '/ui',
+    hook_file: '/hook.js',
+    hook_session_name: 'BEEFHOOK',
+    session_cookie_name: 'BEEFSESSION'
+  },
+  restful_api: {
+    allow_cors: false,
+    cors_allowed_domains: 'http://browserhacker.com'
+  },
+  websocket: {
+    enable: false,
+    port: 61_985,
+    secure: true,
+    secure_port: 61_986,
+    ws_poll_timeout: 1000
+  },
+  web_server_imitation: {
+    enable: true,
+    type: 'apache',
+    hook_404: false,
+    hook_root: false
+  },
+  https: {
+    enable: false,
+    key: 'beef_key.pem',
+    cert: 'beef_cert.pem'
+  },
+  database: {
+    driver: 'sqlite',
+    db_file: 'beef.db',
+    db_host: 'localhost',
+    db_port: 5432,
+    db_name: 'beef',
+    db_user: 'beef',
+    db_passwd: 'beef123',
+    db_encoding: 'UTF-8'
+  },
+  credentials: {
+    user: 'beef',
+    passwd: 'beef'
+  },
+  autorun: {
+    enable: true,
+    allow_user_notify: true
+  },
+  dns_hostname_lookup: false,
+  geoip: {
+    enable: false,
+    database: '/opt/GeoIP/GeoLiteCity.dat'
+  },
+  integration: {
+    phishing_frenzy: {
+      enable: false
+    }
+  },
+  extension: {
+    requester: { enable: true },
+    proxy: {
+      enable: true,
+      key: 'beef_key.pem',
+      cert: 'beef_cert.pem'
+    },
+    metasploit: { enable: false },
+    social_engineering: { enable: true },
+    evasion: { enable: false },
+    console: { shell: { enable: false } },
+    ipec: { enable: true },
+    dns: { enable: false }
+  }
+}

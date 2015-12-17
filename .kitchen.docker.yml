@@ -1,0 +1,25 @@
+---
+driver:
+  name: docker
+  binary: docker
+  use_sudo: false
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: debian-7
+    run_list:
+      - recipe[apt]
+  - name: debian-8
+    run_list:
+      - recipe[apt]
+
+suites:
+- name: beef
+  run_list:
+  - recipe[beef]
+  attributes:
+    beef:
+      user: 'beef'
+      path: '/home/beef'

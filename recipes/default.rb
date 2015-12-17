@@ -20,7 +20,9 @@ node['beef']['packages'].each do |pkg|
   package pkg
 end
 
-gem_package 'bundler'
+gem_package 'bundler' do
+  gem_binary "#{node['beef']['ruby_bin_dir']}/gem"
+end
 
 user node['beef']['user'] do
   system true
@@ -29,33 +31,31 @@ user node['beef']['user'] do
   not_if { node['beef']['user'] == 'root' }
 end
 
-execute 'chown-beef-dir' do
-  action :nothing
-  command 'chown -R '\
-          "#{node['beef']['user']}:#{node['beef']['user']}"\
-          " #{node['beef']['path']}"
+group node['beef']['group'] do
+  members [node['beef']['user']]
+  not_if { node['beef']['group'] == 'root' }
+end
+
+directory node['beef']['path'] do
+  owner node['beef']['user']
+  group node['beef']['group']
 end
 
 git node['beef']['path'] do
   repository node['beef']['git_repository']
   reference node['beef']['git_reference']
-  notifies :run, 'execute[chown-beef-dir]', :immediately
-end
-
-template node['beef']['path'] + '/config.yaml' do
-  owner node['beef']['user']
-  group node['beef']['user']
-  source 'config.yaml.erb'
-  variables config: node['beef']['config']
+  user node['beef']['user']
+  group node['beef']['group']
 end
 
 execute 'bundle install' do
   cwd node['beef']['path']
-  user 'root'
+  environment 'PATH' => "#{node['beef']['ruby_bin_dir']}:#{ENV['PATH']}"
 end
 
-execute 'nohup ruby1.9.3 beef >> beef.log 2>> beef.err &' do
-  cwd node['beef']['path']
-  user node['beef']['user']
-  group node['beef']['user']
+template node['beef']['path'] + '/config.yaml' do
+  owner node['beef']['user']
+  group node['beef']['group']
+  source 'config.yaml.erb'
+  variables config: node['beef']['config']
 end

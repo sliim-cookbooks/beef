@@ -17,10 +17,15 @@ name 'beef'
 maintainer 'Sliim'
 maintainer_email 'sliim@mailoo.org'
 license 'Apache 2.0'
-description 'Installs/Configures beefproject'
+description 'Installs/Configures BeEF'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.2.0'
 
-recipe 'default', 'Installs/configures beef'
+recipe 'default', 'Installs/configures BeEF'
 
-supports 'debian'
+supports 'debian', '>= 7.0'
+
+source_url 'https://github.com/sliim-cookbooks/beef' if
+  respond_to?(:source_url)
+issues_url 'https://github.com/sliim-cookbooks/beef/issues' if
+  respond_to?(:issues_url)

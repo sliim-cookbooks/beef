@@ -16,10 +16,10 @@
 # limitations under the License.
 #
 
-default['beef']['packages'] = %w(curl git ruby1.9.3 build-essential
-                                 ruby-dev libsqlite3-ruby ruby
-                                 libsqlite3-dev libssl-dev)
+default['beef']['packages'] = %w(git libsqlite3-dev build-essential)
 default['beef']['user'] = 'root'
+default['beef']['group'] = node['beef']['user']
 default['beef']['path'] = '/opt/beef'
 default['beef']['git_repository'] = 'https://github.com/beefproject/beef.git'
-default['beef']['git_reference'] = 'master'
+default['beef']['git_reference'] = 'beef-0.4.6.1'
+default['beef']['ruby_bin_dir'] = '/opt/chef/embedded/bin'

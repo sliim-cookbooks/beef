@@ -1,7 +1,7 @@
 beef CHANGELOG
 ==============
 
-This file is used to list changes made in each version of the beef cookbook.
+This file is used to list changes made in each version of the BeEF cookbook.
 
 0.2.0
 -----
