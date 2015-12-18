@@ -32,7 +32,7 @@ Default configuration is set from [beef-0.4.6.1](https://github.com/beefproject/
 #### beef::service
 Use the `[beef][service]` attribute to override variables service configuration. See [default](attributes/service.rb) overrides.
 
-All variables you can override can be found in [service template](template/default/init.erb#L13-L20).
+All variables you can override can be found in [service template](templates/default/service/init.erb#L13-L20).
 
 Usage
 -----
