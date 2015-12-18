@@ -1,6 +1,6 @@
 BeEF Cookbook
 =============
-Install and configures [BeFF](http://beefproject.com)
+Install and configures [BeFF](http://beefproject.com) - The Browser Exploitation Framework!
 
 [![Cookbook Version](https://img.shields.io/cookbook/v/beef.svg)](https://community.opscode.com/cookbooks/beef) [![Build Status](https://secure.travis-ci.org/sliim-cookbooks/beef.png)](http://travis-ci.org/sliim-cookbooks/beef)
 
@@ -14,19 +14,25 @@ The following platforms and versions are tested and supported using Opscode's te
 Attributes
 ----------
 #### beef::default
-|               Key        |  Type  |                 Description                                                      |
-| ------------------------ | ------ | -------------------------------------------------------------------------------- |
-| `[beef][packages]`       | Array  | Additional packages to install (default: [git, libsqlite3-dev, build-essential]) |
-| `[beef][user]`           | String | BeEF user (default: beef)                                                        |
-| `[beef][group]`          | String | BeEF group (default: beef)                                                       |
-| `[beef][path]`           | String | BeEF installation path (default: /opt/beef)                                      |
-| `[beef][git_repository]` | String | BeEF repository url (default: https://github.com/beefproject/beef.git)           |
-| `[beef][git_reference]`  | String | BeEF repository reference (default: beef-0.4.6.1)                                |
-| `[beef][ruby_bin_dir]`   | String | Ruby bin directory (default: /opt/chef/embedded/bin)                             |
+|               Key        |  Type  |                 Description                                                        |
+| ------------------------ | ------ | ---------------------------------------------------------------------------------- |
+| `[beef][packages]`       | Array  | Additional packages to install (default: `[git, libsqlite3-dev, build-essential]`) |
+| `[beef][user]`           | String | BeEF user (default: `beef`)                                                        |
+| `[beef][group]`          | String | BeEF group (default: `beef`)                                                       |
+| `[beef][path]`           | String | BeEF installation path (default: `/opt/beef`)                                      |
+| `[beef][git_repository]` | String | BeEF repository url (default: `https://github.com/beefproject/beef.git`)           |
+| `[beef][git_reference]`  | String | BeEF repository reference (default: `beef-0.4.6.1`)                                |
+| `[beef][ruby_bin_dir]`   | String | Ruby bin directory (default: `/opt/chef/embedded/bin`)                             |
 
 #### beef::config
 The `[beef][config][beef]` namespace is a Hash containing the BeEF configuration.
+
 Default configuration is set from [beef-0.4.6.1](https://github.com/beefproject/beef/blob/beef-0.4.6.1/config.yaml)
+
+#### beef::service
+Use the `[beef][service]` attribute to override variables service configuration. See [default](attributes/service.rb) overrides.
+
+All variables you can override can be found in [service template](template/default/init.erb#L13-L20).
 
 Usage
 -----
@@ -39,6 +45,25 @@ Just include `beef` in your node's `run_list`:
   "run_list": [
     "recipe[beef]"
   ]
+}
+```
+
+#### beef::service
+Just include `beef::service` in your node's `run_list`:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[beef::service]"
+  ],
+  "attributes": {
+    "beef": {
+      "service": {
+        "NAME": "beef-xss"
+      }
+    }
+  }
 }
 ```
 

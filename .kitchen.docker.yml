@@ -19,7 +19,10 @@ suites:
 - name: beef
   run_list:
   - recipe[beef]
+  - recipe[beef::service]
   attributes:
     beef:
       user: 'beef'
       path: '/home/beef'
+      service:
+        NAME: beef-test
