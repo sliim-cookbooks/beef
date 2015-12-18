@@ -34,4 +34,14 @@ end
 
 service node['beef']['service']['NAME'] do
   action :enable
+  supports status: true, start: true, stop: true, restart: true
+end
+
+execute 'systemctl-daemon-reload' do
+  action :nothing
+  command 'systemctl daemon-reload'
+  only_if { node['init_package'] == 'systemd' }
+  subscribes :run,
+             "template[/etc/init.d/#{node['beef']['service']['NAME']}]",
+             :immediately
 end

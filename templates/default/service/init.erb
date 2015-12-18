@@ -10,9 +10,9 @@
 ### END INIT INFO
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
+PATH=<%= node['beef']['ruby_bin_dir'] %>:/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Browser Exploitation Framework"      # Introduce a short description here
-NAME=beef-xss              # Introduce the short server's name here
+NAME=<%= node['beef']['service']['NAME'] %>     # Introduce the short server's name here
 USER=$NAME      # Introduce the user who run the service
 HOME=/usr/share/beef-xss     # Introduce the home directory
 DAEMON=$HOME/beef # Introduce the server's location here
@@ -20,11 +20,11 @@ DAEMON_ARGS=""             # Arguments to run the daemon with
 SCRIPTNAME=/etc/init.d/$NAME
 #PIDFILE=/usr/lib/dradis/server/tmp/pids/server.pid
 
-# Exit if the package is not installed
-[ -x $DAEMON ] || exit 0
-
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+# Exit if the package is not installed
+[ -x $DAEMON ] || exit 0
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
