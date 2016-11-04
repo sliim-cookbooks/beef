@@ -7,16 +7,19 @@ platforms:
 - name: debian-7.6
   run_list:
   - recipe[apt]
-- name: debian-8.1
+- name: debian-8.2
   run_list:
   - recipe[apt]
 
 suites:
 - name: beef
   run_list:
-  - recipe[beef]
+  - recipe[beef::install_src]
+  - recipe[beef::config]
   - recipe[beef::service]
   attributes:
     beef:
       user: 'beef'
       path: '/home/beef'
+      service:
+        NAME: beef-test

@@ -21,7 +21,11 @@ description 'Installs/Configures BeEF'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.3.0'
 
-recipe 'default', 'Installs/configures BeEF'
+recipe 'default', 'Installs from source and configure'
+recipe 'install_pkg', 'Installs BeEF from package'
+recipe 'install_src', 'Installs BeEF from sources'
+recipe 'config', 'Configures BeEF'
+recipe 'service', 'Setup BeEF service'
 
 supports 'debian', '>= 7.0'
 

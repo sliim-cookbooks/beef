@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Cookbook Name:: beef
-# Recipe:: default
+# Recipe:: config
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,5 +16,12 @@
 # limitations under the License.
 #
 
-include_recipe 'beef::install_src'
-include_recipe 'beef::config'
+config_file = node['beef']['config_file']
+config_file = node['beef']['path'] + '/config.yaml' if config_file.nil?
+
+template config_file do
+  owner node['beef']['user']
+  group node['beef']['group']
+  source 'config.yaml.erb'
+  variables config: node['beef']['config']
+end

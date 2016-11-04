@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Cookbook Name:: beef
-# Attributes:: service
+# Recipe:: install_pkg
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,8 +16,5 @@
 # limitations under the License.
 #
 
-default['beef']['service'] = {
-  NAME: 'beef-xss',
-  USER: node['beef']['user'],
-  HOME: node['beef']['path']
-}
+package node['beef']['install_package']
+node.default['beef']['config_file'] = '/etc/beef-xss/config.yaml'

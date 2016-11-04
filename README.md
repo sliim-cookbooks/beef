@@ -13,24 +13,30 @@ The following platforms and versions are tested and supported using Opscode's te
 
 Attributes
 ----------
-#### beef::default
-|               Key        |  Type  |                 Description                                                        |
-| ------------------------ | ------ | ---------------------------------------------------------------------------------- |
-| `[beef][packages]`       | Array  | Additional packages to install (default: `[git, libsqlite3-dev, build-essential]`) |
-| `[beef][user]`           | String | BeEF user (default: `beef`)                                                        |
-| `[beef][group]`          | String | BeEF group (default: `beef`)                                                       |
-| `[beef][path]`           | String | BeEF installation path (default: `/opt/beef`)                                      |
-| `[beef][git_repository]` | String | BeEF repository url (default: `https://github.com/beefproject/beef.git`)           |
-| `[beef][git_reference]`  | String | BeEF repository reference (default: `beef-0.4.6.1`)                                |
-| `[beef][ruby_bin_dir]`   | String | Ruby bin directory (default: `/opt/chef/embedded/bin`)                             |
+#### Install from package
+|               Key         |  Type  |                 Description                                           |
+| ------------------------- | ------ | --------------------------------------------------------------------- |
+| `[beef][install_package]` | Array  | Package to install when installing from package (default: `beef-xss`) |
 
-#### beef::config
-The `[beef][config][beef]` namespace is a Hash containing the BeEF configuration.
+#### Install from sources
+|               Key        |  Type  |                 Description                                                                                     |
+| ------------------------ | ------ | --------------------------------------------------------------------------------------------------------------- |
+| `[beef][packages]`       | Array  | Additional packages to install when installing from sources (default: `[git, libsqlite3-dev, build-essential]`) |
+| `[beef][user]`           | String | BeEF user (default: `beef`)                                                                                     |
+| `[beef][group]`          | String | BeEF group (default: `beef`)                                                                                    |
+| `[beef][path]`           | String | BeEF installation path (default: `/opt/beef`)                                                                   |
+| `[beef][git_repository]` | String | BeEF repository url (default: `https://github.com/beefproject/beef.git`)                                        |
+| `[beef][git_reference]`  | String | BeEF repository reference (default: `beef-0.4.7.0`)                                                             |
+| `[beef][ruby_bin_dir]`   | String | Ruby bin directory (default: `/opt/chef/embedded/bin`)                                                          |
 
-Default configuration is set from [beef-0.4.6.1](https://github.com/beefproject/beef/blob/beef-0.4.6.1/config.yaml)
+#### Configuration
+- `[beef][config_file]` Path to configuration file. The `beef::install_pkg` automatically set this to `/etc/beef-xss/config.yaml`. If `nil` automatically generated from `[beef][path]` attribute. Default: `nil`.
+- The `[beef][config][beef]` namespace is a Hash containing the BeEF configuration.
 
-#### beef::service
-Use the `[beef][service]` attribute to override variables service configuration. See [default](attributes/service.rb) overrides.
+Default configuration is set from [beef-0.4.7.0](https://github.com/beefproject/beef/blob/beef-0.4.7.0/config.yaml)
+
+#### Service
+Use the `[beef][service]` attribute to override variables service configuration. See [default](attributes/default.rb) overrides.
 
 All variables you can override can be found in [service template](templates/default/service/init.erb#L13-L20).
 
@@ -48,8 +54,57 @@ Just include `beef` in your node's `run_list`:
 }
 ```
 
+#### beef::install_pkg
+Just include `beef::install_pkg` in your node's `run_list` to install BeEF from package:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[beef::install_pkg]"
+  ]
+}
+```
+
+#### beef::install_src
+Just include `beef::install_src` in your node's `run_list` to install BeEF from sources:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[beef::install_src]"
+  ],
+  "attributes": {
+    "beef": {
+      "user": "beef",
+      "group": "beef",
+      "path": "/opt/beef"
+    }
+  }
+}
+```
+
+#### beef::config
+Just include `beef::install_src` in your node's `run_list` to configure BeEF.
+You can optionally set the configuration file target with `[beef][config_file]` attribute:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[beef::config]"
+  ],
+  "attributes": {
+    "beef": {
+      "config_file": "/etc/beef/config.yaml"
+    }
+  }
+}
+```
+
 #### beef::service
-Just include `beef::service` in your node's `run_list`:
+Just include `beef::service` in your node's `run_list` to setup BeEF service:
 
 ```json
 {

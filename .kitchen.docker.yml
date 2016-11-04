@@ -18,7 +18,8 @@ platforms:
 suites:
 - name: beef
   run_list:
-  - recipe[beef]
+  - recipe[beef::install_src]
+  - recipe[beef::config]
   - recipe[beef::service]
   attributes:
     beef:

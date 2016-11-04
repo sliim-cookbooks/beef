@@ -4,7 +4,7 @@ require 'chefspec'
 
 describe 'beef::service' do
   let(:subject) do
-    ChefSpec::SoloRunner.new do |node|
+    ChefSpec::SoloRunner.new(platform: 'debian', version: '8.2') do |node|
       node.set['beef']['path'] = '/opt/beef-test'
       node.set['beef']['service']['NAME'] = 'beef-test'
       node.set['beef']['service']['USER'] = 'beef-dev'
