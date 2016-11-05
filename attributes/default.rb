@@ -35,6 +35,8 @@ default['beef']['service']['HOME'] = node['beef']['path']
 
 # config
 default['beef']['config_file'] = nil
+default['beef']['extensions_path'] = nil
+default['beef']['config']['extensions'] = {}
 default['beef']['config']['beef'] = {
   version: '0.4.7.0-alpha',
   debug: false,

@@ -18,3 +18,4 @@
 
 package node['beef']['install_package']
 node.default['beef']['config_file'] = '/etc/beef-xss/config.yaml'
+node.default['beef']['extensions_path'] = '/usr/share/beef-xss/extensions'

@@ -18,10 +18,34 @@
 
 config_file = node['beef']['config_file']
 config_file = node['beef']['path'] + '/config.yaml' if config_file.nil?
+extensions_path = node['beef']['extensions_path']
+extensions_path = node['beef']['path'] + '/extensions' if extensions_path.nil?
+config = JSON.parse(node['beef']['config']['beef'].to_hash.dup.to_json)
 
 template config_file do
   owner node['beef']['user']
   group node['beef']['group']
   source 'config.yaml.erb'
-  variables config: node['beef']['config']
+  variables config: { beef: config }
+end
+
+node['beef']['config']['extensions'].keys.each do |key|
+  config_file = "#{extensions_path}/#{key}/config.yaml" unless key == 'beef'
+  config = JSON.parse(
+    node['beef']['config']['extensions'][key].to_hash.dup.to_json
+  )
+
+  template config_file do
+    owner node['beef']['user']
+    group node['beef']['group']
+    source 'config.yaml.erb'
+    variables config:
+                {
+                  beef: {
+                    extension: {
+                      key => config
+                    }
+                  }
+                }
+  end
 end

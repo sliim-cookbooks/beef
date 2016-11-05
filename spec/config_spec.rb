@@ -31,4 +31,25 @@ describe 'beef::config' do
               source: 'config.yaml.erb')
     end
   end
+
+  context 'with extension' do
+    let(:subject) do
+      ChefSpec::SoloRunner.new(platform: 'debian', version: '8.2') do |node|
+        node.set['beef']['config']['extensions']['metasploit']['enable'] = true
+      end.converge(described_recipe)
+    end
+
+    it 'creates template[/opt/beef/config.yaml]' do
+      expect(subject).to create_template('/opt/beef/config.yaml')
+        .with(owner: 'root',
+              source: 'config.yaml.erb')
+    end
+
+    ext_file = '/opt/beef/extensions/metasploit/config.yaml'
+    it "creates template[#{ext_file}]" do
+      expect(subject).to create_template(ext_file)
+        .with(owner: 'root',
+              source: 'config.yaml.erb')
+    end
+  end
 end
