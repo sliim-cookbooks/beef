@@ -54,30 +54,30 @@ default['beef']['config']['beef'] = {
     web_ui_basepath: '/ui',
     hook_file: '/hook.js',
     hook_session_name: 'BEEFHOOK',
-    session_cookie_name: 'BEEFSESSION'
-  },
-  restful_api: {
-    allow_cors: false,
-    cors_allowed_domains: 'http://browserhacker.com'
-  },
-  websocket: {
-    enable: false,
-    port: 61_985,
-    secure: true,
-    secure_port: 61_986,
-    ws_poll_timeout: 1000,
-    ws_connect_timeout: 500
-  },
-  web_server_imitation: {
-    enable: true,
-    type: 'apache',
-    hook_404: false,
-    hook_root: false
-  },
-  https: {
-    enable: false,
-    key: 'beef_key.pem',
-    cert: 'beef_cert.pem'
+    session_cookie_name: 'BEEFSESSION',
+    restful_api: {
+      allow_cors: false,
+      cors_allowed_domains: 'http://browserhacker.com'
+    },
+    websocket: {
+      enable: false,
+      port: 61_985,
+      secure: true,
+      secure_port: 61_986,
+      ws_poll_timeout: 1000,
+      ws_connect_timeout: 500
+    },
+    web_server_imitation: {
+      enable: true,
+      type: 'apache',
+      hook_404: false,
+      hook_root: false
+    },
+    https: {
+      enable: false,
+      key: 'beef_key.pem',
+      cert: 'beef_cert.pem'
+    }
   },
   database: {
     driver: 'sqlite',
