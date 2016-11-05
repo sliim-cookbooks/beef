@@ -48,6 +48,10 @@ git node['beef']['path'] do
   group node['beef']['group']
 end
 
+file "#{node['beef']['path']}/Gemfile.lock" do
+  action :delete
+end
+
 execute 'bundle install' do
   cwd node['beef']['path']
   environment 'PATH' => "#{node['beef']['ruby_bin_dir']}:#{ENV['PATH']}"
