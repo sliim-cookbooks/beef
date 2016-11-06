@@ -26,7 +26,7 @@ template config_file do
   owner node['beef']['user']
   group node['beef']['group']
   source 'config.yaml.erb'
-  variables config: { beef: config }
+  variables config: { 'beef' => config }
 end
 
 node['beef']['config']['extensions'].keys.each do |key|
@@ -41,8 +41,8 @@ node['beef']['config']['extensions'].keys.each do |key|
     source 'config.yaml.erb'
     variables config:
                 {
-                  beef: {
-                    extension: {
+                  'beef' => {
+                    'extension' => {
                       key => config
                     }
                   }
