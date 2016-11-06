@@ -27,6 +27,9 @@ template config_file do
   group node['beef']['group']
   source 'config.yaml.erb'
   variables config: { 'beef' => config }
+  if node.recipe?('beef::service')
+    notifies :restart, "service[#{node['beef']['service']['NAME']}]", :delayed
+  end
 end
 
 node['beef']['config']['extensions'].keys.each do |key|

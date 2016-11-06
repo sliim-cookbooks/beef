@@ -33,8 +33,14 @@ template "/etc/default/#{node['beef']['service']['NAME']}" do
 end
 
 service node['beef']['service']['NAME'] do
-  action :enable
+  action [:enable, :start]
   supports status: true, start: true, stop: true, restart: true
+  subscribes :restart,
+             "template[/etc/init.d/#{node['beef']['service']['NAME']}]",
+             :delayed
+  subscribes :restart,
+             "template[/etc/default/#{node['beef']['service']['NAME']}]",
+             :delayed
 end
 
 execute 'systemctl-daemon-reload' do

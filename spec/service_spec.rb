@@ -39,4 +39,8 @@ describe 'beef::service' do
   it 'enables service[beef-test]' do
     expect(subject).to enable_service('beef-test')
   end
+
+  it 'starts service[beef-test]' do
+    expect(subject).to start_service('beef-test')
+  end
 end
