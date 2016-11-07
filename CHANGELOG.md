@@ -3,6 +3,16 @@ beef CHANGELOG
 
 This file is used to list changes made in each version of the BeEF cookbook.
 
+0.4.0
+-----
+- Added recipes:
+  - `beef::install_pkg`
+  - `beef::install_src`
+  - `beef::config`
+- Set default version to `0.4.7.0-alpha`
+- Provides BeEF extentions configuration
+- Enable and start BeEF server in `beef::service` recipe
+
 0.3.0
 -----
 - New recipe: `beef::service` to install and enable BeEF service
