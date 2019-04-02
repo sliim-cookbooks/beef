@@ -26,7 +26,7 @@ end
 
 user node['beef']['user'] do
   system true
-  supports manage_home: false
+  manage_home false
   home node['beef']['path']
   not_if { node['beef']['user'] == 'root' }
 end
