@@ -41,18 +41,24 @@ directory node['beef']['path'] do
   group node['beef']['group']
 end
 
+execute 'beef-bundle-install' do
+  action :nothing
+  cwd node['beef']['path']
+  command 'bundle install --without test development'
+  user node['beef']['user']
+  group node['beef']['group']
+  environment 'PATH' => "#{node['beef']['ruby_bin_dir']}:#{ENV['PATH']}"
+end
+
+file "#{node['beef']['path']}/Gemfile.lock" do
+  action :nothing
+end
+
 git node['beef']['path'] do
   repository node['beef']['git_repository']
   reference node['beef']['git_reference']
   user node['beef']['user']
   group node['beef']['group']
-end
-
-file "#{node['beef']['path']}/Gemfile.lock" do
-  action :delete
-end
-
-execute 'bundle install' do
-  cwd node['beef']['path']
-  environment 'PATH' => "#{node['beef']['ruby_bin_dir']}:#{ENV['PATH']}"
+  notifies :delete, "file[#{node['beef']['path']}/Gemfile.lock]", :immediately
+  notifies :run, 'execute[beef-bundle-install]', :immediately
 end
