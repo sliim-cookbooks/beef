@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
-require 'chefspec'
+require_relative 'spec_helper'
 
 describe 'beef::install_src' do
   context 'with custom user' do
     let(:subject) do
-      ChefSpec::SoloRunner.new(platform: 'debian', version: '8.2') do |node|
-        node.set['beef']['packages'] = %w(git ruby)
-        node.set['beef']['user'] = 'beefuser'
-        node.set['beef']['path'] = '/opt/beef-home'
-        node.set['beef']['git_repository'] = 'http://git.server.org/beef.git'
-        node.set['beef']['git_reference'] = 'stable'
+      ChefSpec::SoloRunner.new do |node|
+        node.normal['beef']['packages'] = %w(git ruby)
+        node.normal['beef']['user'] = 'beefuser'
+        node.normal['beef']['path'] = '/opt/beef-home'
+        node.normal['beef']['git_repository'] = 'http://git.server.org/beef.git'
+        node.normal['beef']['git_reference'] = 'stable'
       end.converge(described_recipe)
     end
 
@@ -48,19 +48,14 @@ describe 'beef::install_src' do
               reference: 'stable',
               user: 'beefuser')
     end
-
-    it 'runs execute[bundle install]' do
-      expect(subject).to run_execute('bundle install')
-        .with(cwd: '/opt/beef-home')
-    end
   end
 
   context 'with root user' do
     let(:subject) do
-      ChefSpec::SoloRunner.new(platform: 'debian', version: '8.2') do |node|
-        node.set['beef']['user'] = 'root'
-        node.set['beef']['packages'] = []
-        node.set['beef']['path'] = '/opt/beef-home'
+      ChefSpec::SoloRunner.new do |node|
+        node.normal['beef']['user'] = 'root'
+        node.normal['beef']['packages'] = []
+        node.normal['beef']['path'] = '/opt/beef-home'
       end.converge(described_recipe)
     end
 

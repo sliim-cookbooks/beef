@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-require 'chefspec'
+require_relative 'spec_helper'
 
 describe 'beef::config' do
   context 'when installed from sources' do
     let(:subject) do
-      ChefSpec::SoloRunner.new(platform: 'debian', version: '8.2') do |node|
-        node.set['beef']['user'] = 'beefuser'
-        node.set['beef']['path'] = '/opt/beef-home'
+      ChefSpec::SoloRunner.new do |node|
+        node.normal['beef']['user'] = 'beefuser'
+        node.normal['beef']['path'] = '/opt/beef-home'
       end.converge(described_recipe)
     end
 
@@ -20,8 +20,8 @@ describe 'beef::config' do
 
   context 'when config file specified' do
     let(:subject) do
-      ChefSpec::SoloRunner.new(platform: 'debian', version: '8.2') do |node|
-        node.set['beef']['config_file'] = '/etc/beef-xss/config.yaml'
+      ChefSpec::SoloRunner.new do |node|
+        node.normal['beef']['config_file'] = '/etc/beef-xss/config.yaml'
       end.converge(described_recipe)
     end
 
@@ -34,8 +34,8 @@ describe 'beef::config' do
 
   context 'with extension' do
     let(:subject) do
-      ChefSpec::SoloRunner.new(platform: 'debian', version: '8.2') do |node|
-        node.set['beef']['config']['extensions']['metasploit']['enable'] = true
+      ChefSpec::SoloRunner.new do |node|
+        node.normal['beef']['config']['extensions']['metasploit']['enable'] = true
       end.converge(described_recipe)
     end
 

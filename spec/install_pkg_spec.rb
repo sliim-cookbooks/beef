@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-require 'chefspec'
+require_relative 'spec_helper'
 
 describe 'beef::install_pkg' do
   let(:subject) do
     ChefSpec::SoloRunner.new do |node|
-      node.set['beef']['install_package'] = 'beef'
+      node.normal['beef']['install_package'] = 'beef'
     end.converge(described_recipe)
   end
 

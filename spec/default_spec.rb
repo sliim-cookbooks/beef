@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 
-require 'chefspec'
+require_relative 'spec_helper'
 
 describe 'beef::default' do
   let(:subject) do
-    ChefSpec::SoloRunner.new(
-      platform: 'debian',
-      version: '8.2'
-    ).converge(described_recipe)
+    ChefSpec::SoloRunner.new.converge(described_recipe)
   end
 
   it 'includes recipe[beef::install_src]' do
