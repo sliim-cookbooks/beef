@@ -26,6 +26,7 @@ recipe 'install_pkg', 'Installs BeEF from package'
 recipe 'install_src', 'Installs BeEF from sources'
 recipe 'config', 'Configures BeEF'
 recipe 'service', 'Setup BeEF service'
+recipe 'geoip_database', 'Download GeoIP database'
 
 supports 'debian', '>= 7.0'
 

@@ -42,6 +42,11 @@ Use the `[beef][service]` attribute to override variables service configuration.
 
 All variables you can override can be found in [service template](templates/default/service/init.erb#L13-L20).
 
+#### GeoIP database
+| Key                 | Type   | Description                                                                                                               |
+| ------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- |
+| `[beef][geoip_url]` | String | URL to fetch GEOIP database archive (default: `https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz`) |
+
 Usage
 -----
 #### beef::default
@@ -121,6 +126,18 @@ Just include `beef::service` in your node's `run_list` to setup BeEF service:
       }
     }
   }
+}
+```
+
+#### beef::geoip_database
+Just include `beef::geoip_database` in your node's `run_list` to download GeoIP database:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[beef::geoip_database]"
+  ]
 }
 ```
 

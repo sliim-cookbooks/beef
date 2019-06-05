@@ -29,6 +29,9 @@ default['beef']['git_repository'] = 'https://github.com/beefproject/beef.git'
 default['beef']['git_reference'] = 'beef-0.4.7.0'
 default['beef']['ruby_bin_dir'] = '/opt/chef/embedded/bin'
 
+# GeoIP
+default['beef']['geoip_url'] = 'https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz'
+
 # Service
 default['beef']['service']['NAME'] = 'beef-xss'
 default['beef']['service']['USER'] = node['beef']['user']
