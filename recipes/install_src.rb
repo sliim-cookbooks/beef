@@ -44,7 +44,7 @@ end
 execute 'beef-bundle-install' do
   action :nothing
   cwd node['beef']['path']
-  command 'bundle install --without test development'
+  command 'bundle install --path=vendor --without test development'
   user node['beef']['user']
   group node['beef']['group']
   environment 'PATH' => "#{node['beef']['ruby_bin_dir']}:#{ENV['PATH']}"
