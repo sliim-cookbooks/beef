@@ -20,8 +20,10 @@ node['beef']['packages'].each do |pkg|
   package pkg
 end
 
-gem_package 'bundler' do
-  gem_binary "#{node['beef']['ruby_bin_dir']}/gem"
+node['beef']['gem_packages'].each do |gem|
+  gem_package gem do
+    gem_binary "#{node['beef']['ruby_bin_dir']}/gem"
+  end
 end
 
 user node['beef']['user'] do

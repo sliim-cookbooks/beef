@@ -7,6 +7,7 @@ describe 'beef::install_src' do
     let(:subject) do
       ChefSpec::SoloRunner.new do |node|
         node.normal['beef']['packages'] = %w(git ruby)
+        node.normal['beef']['gem_packages'] = %w(bundler msgpack)
         node.normal['beef']['user'] = 'beefuser'
         node.normal['beef']['path'] = '/opt/beef-home'
         node.normal['beef']['git_repository'] = 'http://git.server.org/beef.git'
@@ -20,9 +21,11 @@ describe 'beef::install_src' do
       end
     end
 
-    it 'installs gem_package[bundler]' do
-      expect(subject).to install_gem_package('bundler')
-        .with(gem_binary: '/opt/chef/embedded/bin/gem')
+    %w(bundler msgpack).each do |pkg|
+      it "installs gem_package[#{pkg}]" do
+        expect(subject).to install_gem_package(pkg)
+          .with(gem_binary: '/opt/chef/embedded/bin/gem')
+      end
     end
 
     it 'creates user[beefuser]' do

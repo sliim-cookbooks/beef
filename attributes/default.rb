@@ -21,6 +21,7 @@ default['beef']['install_package'] = 'beef-xss'
 
 # Install from sources
 default['beef']['packages'] = %w(git libsqlite3-dev build-essential)
+default['beef']['gem_packages'] = %w(bundler)
 default['beef']['user'] = 'root'
 default['beef']['group'] = node['beef']['user']
 default['beef']['path'] = '/opt/beef'

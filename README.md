@@ -19,9 +19,10 @@ Attributes
 | `[beef][install_package]` | Array  | Package to install when installing from package (default: `beef-xss`) |
 
 #### Install from sources
-|               Key        |  Type  |                 Description                                                                                     |
+| Key                      | Type   | Description                                                                                                     |
 | ------------------------ | ------ | --------------------------------------------------------------------------------------------------------------- |
 | `[beef][packages]`       | Array  | Additional packages to install when installing from sources (default: `[git, libsqlite3-dev, build-essential]`) |
+| `[beef][gem_packages]`   | Array  | Additional gem packages to install when installing from sources (default: `[bundler]`)                          |
 | `[beef][user]`           | String | BeEF user (default: `root`)                                                                                     |
 | `[beef][group]`          | String | BeEF group (default: `root`)                                                                                    |
 | `[beef][path]`           | String | BeEF installation path (default: `/opt/beef`)                                                                   |
