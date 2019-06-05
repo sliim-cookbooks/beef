@@ -46,9 +46,9 @@ node['beef']['config']['extensions'].keys.each do |key|
                 {
                   'beef' => {
                     'extension' => {
-                      key => config
-                    }
-                  }
+                      key => config,
+                    },
+                  },
                 }
   end
 end

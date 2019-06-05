@@ -48,7 +48,7 @@ default['beef']['config']['beef'] = {
   crypto_default_value_length: 80,
   restrictions: {
     permitted_hooking_subnet: '0.0.0.0/0',
-    permitted_ui_subnet: '0.0.0.0/0'
+    permitted_ui_subnet: '0.0.0.0/0',
   },
   http: {
     debug: false,
@@ -63,7 +63,7 @@ default['beef']['config']['beef'] = {
     session_cookie_name: 'BEEFSESSION',
     restful_api: {
       allow_cors: false,
-      cors_allowed_domains: 'http://browserhacker.com'
+      cors_allowed_domains: 'http://browserhacker.com',
     },
     websocket: {
       enable: false,
@@ -71,19 +71,19 @@ default['beef']['config']['beef'] = {
       secure: true,
       secure_port: 61_986,
       ws_poll_timeout: 1000,
-      ws_connect_timeout: 500
+      ws_connect_timeout: 500,
     },
     web_server_imitation: {
       enable: true,
       type: 'apache',
       hook_404: false,
-      hook_root: false
+      hook_root: false,
     },
     https: {
       enable: false,
       key: 'beef_key.pem',
-      cert: 'beef_cert.pem'
-    }
+      cert: 'beef_cert.pem',
+    },
   },
   database: {
     driver: 'sqlite',
@@ -93,37 +93,37 @@ default['beef']['config']['beef'] = {
     db_name: 'beef',
     db_user: 'beef',
     db_passwd: 'beef123',
-    db_encoding: 'UTF-8'
+    db_encoding: 'UTF-8',
   },
   credentials: {
     user: 'beef',
-    passwd: 'beef'
+    passwd: 'beef',
   },
   autorun: {
     enable: true,
-    allow_user_notify: true
+    allow_user_notify: true,
   },
   dns_hostname_lookup: false,
   geoip: {
     enable: false,
-    database: '/opt/GeoIP/GeoLiteCity.dat'
+    database: '/opt/GeoIP/GeoLiteCity.dat',
   },
   integration: {
     phishing_frenzy: {
-      enable: false
-    }
+      enable: false,
+    },
   },
   extension: {
     requester: { enable: true },
     proxy: {
       enable: true,
       key: 'beef_key.pem',
-      cert: 'beef_cert.pem'
+      cert: 'beef_cert.pem',
     },
     metasploit: { enable: false },
     social_engineering: { enable: true },
     evasion: { enable: false },
     ipec: { enable: true },
-    dns: { enable: false }
-  }
+    dns: { enable: false },
+  },
 }
