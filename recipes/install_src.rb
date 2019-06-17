@@ -20,12 +20,6 @@ node['beef']['packages'].each do |pkg|
   package pkg
 end
 
-node['beef']['gem_packages'].each do |gem|
-  gem_package gem do
-    gem_binary "#{node['beef']['ruby_bin_dir']}/gem"
-  end
-end
-
 user node['beef']['user'] do
   system true
   manage_home false
@@ -52,6 +46,23 @@ execute 'beef-bundle-install' do
   environment 'PATH' => "#{node['beef']['ruby_bin_dir']}:#{ENV['PATH']}"
 end
 
+node['beef']['gem_packages'].each do |gem|
+  gem_package gem do
+    gem_binary "#{node['beef']['ruby_bin_dir']}/gem"
+  end
+
+  execute "bundle add #{gem} --skip-install" do
+    action :run
+    ignore_failure true
+    cwd node['beef']['path']
+    user node['beef']['user']
+    group node['beef']['group']
+    environment 'PATH' => "#{node['beef']['ruby_bin_dir']}:#{ENV['PATH']}"
+    notifies :delete, "file[#{node['beef']['path']}/Gemfile.lock]", :delayed
+    notifies :run, 'execute[beef-bundle-install]', :delayed
+  end
+end
+
 file "#{node['beef']['path']}/Gemfile.lock" do
   action :nothing
 end
@@ -61,6 +72,6 @@ git node['beef']['path'] do
   reference node['beef']['git_reference']
   user node['beef']['user']
   group node['beef']['group']
-  notifies :delete, "file[#{node['beef']['path']}/Gemfile.lock]", :immediately
-  notifies :run, 'execute[beef-bundle-install]', :immediately
+  notifies :delete, "file[#{node['beef']['path']}/Gemfile.lock]", :delayed
+  notifies :run, 'execute[beef-bundle-install]', :delayed
 end

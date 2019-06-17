@@ -21,13 +21,6 @@ describe 'beef::install_src' do
       end
     end
 
-    %w(bundler msgpack).each do |pkg|
-      it "installs gem_package[#{pkg}]" do
-        expect(subject).to install_gem_package(pkg)
-          .with(gem_binary: '/opt/chef/embedded/bin/gem')
-      end
-    end
-
     it 'creates user[beefuser]' do
       expect(subject).to create_user('beefuser')
         .with(system: true,
@@ -43,6 +36,21 @@ describe 'beef::install_src' do
       expect(subject).to create_directory('/opt/beef-home')
         .with(owner: 'beefuser',
               group: 'beefuser')
+    end
+
+    %w(bundler msgpack).each do |pkg|
+      it "installs gem_package[#{pkg}]" do
+        expect(subject).to install_gem_package(pkg)
+          .with(gem_binary: '/opt/chef/embedded/bin/gem')
+      end
+
+      it "runs execute[bundle add #{pkg} --skip-install]" do
+        expect(subject).to run_execute("bundle add #{pkg} --skip-install")
+          .with(ignore_failure: true,
+                cwd: '/opt/beef-home',
+                user: 'beefuser',
+                group: 'beefuser')
+      end
     end
 
     it 'syncs git[/opt/beef-home]' do
