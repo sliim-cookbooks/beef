@@ -27,7 +27,7 @@ Attributes
 | `[beef][group]`          | String | BeEF group (default: `root`)                                                                                    |
 | `[beef][path]`           | String | BeEF installation path (default: `/opt/beef`)                                                                   |
 | `[beef][git_repository]` | String | BeEF repository url (default: `https://github.com/beefproject/beef.git`)                                        |
-| `[beef][git_reference]`  | String | BeEF repository reference (default: `beef-0.4.7.0`)                                                             |
+| `[beef][git_reference]`  | String | BeEF repository reference (default: `beef-0.4.7.3`)                                                             |
 | `[beef][ruby_bin_dir]`   | String | Ruby bin directory (default: `/opt/chef/embedded/bin`)                                                          |
 
 #### Configuration
@@ -35,7 +35,7 @@ Attributes
 - `[beef][extensions_path]` Path to BeEF extensions. The `beef::install_pkg` automatically set this to `/usr/share/beef-xss/extensions`. If `nil` automatically generated from `[beef][path]` attribute. Default: `nil`.
 - The `[beef][config][beef]` namespace is a Hash containing the BeEF configuration. Extensions configuration are defined in `[beef][config][extensions]`
 
-Default configuration is set from [beef-0.4.7.0](https://github.com/beefproject/beef/blob/beef-0.4.7.0/config.yaml)
+Default configuration is set from [beef-0.4.7.3](https://github.com/beefproject/beef/blob/beef-0.4.7.3/config.yaml)
 
 #### Service
 Use the `[beef][service]` attribute to override variables service configuration. See [default](attributes/default.rb) attributes.

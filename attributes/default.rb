@@ -26,7 +26,7 @@ default['beef']['user'] = 'root'
 default['beef']['group'] = node['beef']['user']
 default['beef']['path'] = '/opt/beef'
 default['beef']['git_repository'] = 'https://github.com/beefproject/beef.git'
-default['beef']['git_reference'] = 'beef-0.4.7.0'
+default['beef']['git_reference'] = 'beef-0.4.7.3'
 default['beef']['ruby_bin_dir'] = '/opt/chef/embedded/bin'
 
 # GeoIP
@@ -42,25 +42,26 @@ default['beef']['config_file'] = nil
 default['beef']['extensions_path'] = nil
 default['beef']['config']['extensions'] = {}
 default['beef']['config']['beef'] = {
-  version: '0.4.7.0-alpha',
+  version: '0.4.7.3-alpha',
   debug: false,
   client_debug: false,
   crypto_default_value_length: 80,
+  credentials: {
+    user: 'beef',
+    passwd: 'beef',
+  },
   restrictions: {
-    permitted_hooking_subnet: '0.0.0.0/0',
-    permitted_ui_subnet: '0.0.0.0/0',
+    permitted_hooking_subnet: ['0.0.0.0/0', '::/0'],
+    permitted_ui_subnet: ['0.0.0.0/0', '::/0'],
+    api_attempt_delay: '0.05',
   },
   http: {
     debug: false,
     host: '0.0.0.0',
     port: 3000,
     xhr_poll_timeout: 1000,
-    dns_host: 'localhost',
-    dns_port: 53,
-    web_ui_basepath: '/ui',
     hook_file: '/hook.js',
     hook_session_name: 'BEEFHOOK',
-    session_cookie_name: 'BEEFSESSION',
     restful_api: {
       allow_cors: false,
       cors_allowed_domains: 'http://browserhacker.com',
@@ -95,18 +96,15 @@ default['beef']['config']['beef'] = {
     db_passwd: 'beef123',
     db_encoding: 'UTF-8',
   },
-  credentials: {
-    user: 'beef',
-    passwd: 'beef',
-  },
   autorun: {
-    enable: true,
-    allow_user_notify: true,
+    result_poll_interval: 300,
+    result_poll_timeout: 5000,
+    continue_after_timeout: true,
   },
   dns_hostname_lookup: false,
   geoip: {
-    enable: false,
-    database: '/opt/GeoIP/GeoLiteCity.dat',
+    enable: true,
+    database: '/opt/GeoIP/GeoLite2-City.mmdb',
   },
   integration: {
     phishing_frenzy: {
@@ -114,16 +112,15 @@ default['beef']['config']['beef'] = {
     },
   },
   extension: {
+    admin_ui: { enable: true, base_path: '/ui' },
+    demos: { enable: true },
+    events: { enable: true },
+    evasion: { enable: false },
     requester: { enable: true },
-    proxy: {
-      enable: true,
-      key: 'beef_key.pem',
-      cert: 'beef_cert.pem',
-    },
+    proxy: { enable: true },
+    network: { enable: true },
     metasploit: { enable: false },
     social_engineering: { enable: true },
-    evasion: { enable: false },
-    ipec: { enable: true },
-    dns: { enable: false },
+    xssrays: { enable: true },
   },
 }
