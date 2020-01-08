@@ -17,7 +17,7 @@ maintainer_email 'sliim@mailoo.org'
 license 'Apache-2.0'
 description 'Installs/Configures BeEF'
 chef_version '>= 12.5'
-version '0.4.0'
+version '0.5.0'
 
 supports 'debian', '>= 7.0'
 

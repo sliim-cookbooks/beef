@@ -3,6 +3,16 @@ beef CHANGELOG
 
 This file is used to list changes made in each version of the BeEF cookbook.
 
+0.5.0
+-----
+- Chef 13 fixes
+- Execute `bundle install` after repo synced
+- Add `[beef][gem_packages]` attribute for additional gem packages
+- Add `beef::geoip_database` recipe + attribute to deploy maxmind geoip DB
+- `beef::install_src`: Append additional gems to beef's Gemfile
+- Update default attributes for BeEF 0.4.7.3
+- CI fixes
+
 0.4.0
 -----
 - Added recipes:
