@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-#
-# Cookbook Name:: beef
+# Cookbook:: beef
 # Recipe:: install_pkg
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

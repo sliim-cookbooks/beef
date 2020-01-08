@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -16,21 +14,12 @@
 name 'beef'
 maintainer 'Sliim'
 maintainer_email 'sliim@mailoo.org'
-license 'Apache 2.0'
+license 'Apache-2.0'
 description 'Installs/Configures BeEF'
-long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+chef_version '>= 12.5'
 version '0.4.0'
-
-recipe 'default', 'Installs from source and configure'
-recipe 'install_pkg', 'Installs BeEF from package'
-recipe 'install_src', 'Installs BeEF from sources'
-recipe 'config', 'Configures BeEF'
-recipe 'service', 'Setup BeEF service'
-recipe 'geoip_database', 'Download GeoIP database'
 
 supports 'debian', '>= 7.0'
 
-source_url 'https://github.com/sliim-cookbooks/beef' if
-  respond_to?(:source_url)
-issues_url 'https://github.com/sliim-cookbooks/beef/issues' if
-  respond_to?(:issues_url)
+source_url 'https://github.com/sliim-cookbooks/beef'
+issues_url 'https://github.com/sliim-cookbooks/beef/issues'

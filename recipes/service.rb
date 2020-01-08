@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-#
-# Cookbook Name:: beef
+# Cookbook:: beef
 # Recipe:: service
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +14,7 @@
 # limitations under the License.
 #
 
+# FIXME: deploy systemd service
 include_recipe 'beef'
 
 template "/etc/init.d/#{node['beef']['service']['NAME']}" do

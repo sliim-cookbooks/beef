@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 source 'https://rubygems.org'
 
 gem 'chef', '~> 12'
@@ -6,7 +5,7 @@ gem 'berkshelf'
 gem 'rake'
 
 group :lint do
-  gem 'rubocop'
+  gem 'cookstyle'
   gem 'foodcritic'
 end
 
