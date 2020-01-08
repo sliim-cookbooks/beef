@@ -19,5 +19,5 @@ require 'chefspec/berkshelf'
 RSpec.configure do |config|
   config.log_level = :error
   config.platform = 'debian'
-  config.version = '9.4'
+  config.version = '9.11'
 end
